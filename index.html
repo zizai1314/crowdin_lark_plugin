@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crowdin Lark 通知插件</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Lark 通知</h1>
+        </div>
+        <div class="content">
+            <p class="description">点击下方按钮发送 Lark 通知</p>
+            <button id="sendLarkBtn" class="lark-button">
+                <span class="button-text">发送 Lark 通知</span>
+                <span class="button-loading" style="display: none;">发送中...</span>
+            </button>
+            <div id="message" class="message"></div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
+
