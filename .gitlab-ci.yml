@@ -1,11 +1,10 @@
 pages:
   stage: deploy
   script:
-    - echo "Deploying to GitLab Pages..."
+    - mkdir -p public
+    - cp index.html app.js styles.css manifest.json public/
   artifacts:
     paths:
       - public
   only:
     - master
-
-

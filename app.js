@@ -111,33 +111,33 @@ async function sendLarkNotification() {
     await sendNotification(
         'sendLarkBtn',
         LARK_CONFIG.devWebhookUrl,
-        '正在发送消息...',
-        '✅ Lark 通知发送成功！',
+        '正在通知开发侧...',
+        '✅ 开发侧通知发送成功！',
         messageContent
     );
 }
 
 async function sendVerifyPassNotification() {
     const currentTime = new Date().toLocaleString('zh-CN');
-    const messageContent = `✅ Crowdin翻译校验通过通知
+    const messageContent = `✅ Crowdin翻译人工校验通过通知
 
-📋 任务标题：翻译内容校验通过
+📋 任务标题：翻译内容人工校验通过
 
-📊 执行状态：校验通过
+📊 执行状态：人工校验通过
 
-📝 详细信息：产品侧已完成翻译内容校验，翻译质量符合要求
+📝 详细信息：产品侧已完成翻译内容人工校验，翻译质量符合要求
 
 ⏰ 执行时间：${currentTime}
 
 💡 后续流程：
-1. 翻译内容已通过产品侧校验
+1. 翻译内容已通过产品侧人工校验
 2. 可以进行后续发布流程`;
 
     await sendNotification(
         'verifyPassBtn',
         LARK_CONFIG.productWebhookUrl,
-        '正在发送校验通过通知...',
-        '✅ 校验通过通知发送成功！',
+        '正在发送人工校验通过通知...',
+        '✅ 人工校验通过通知发送成功！',
         messageContent
     );
 }
