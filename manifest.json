@@ -1,9 +1,0 @@
-{
-  "name": "Lark 通知插件",
-  "version": "1.0.0",
-  "description": "一键发送 Lark 通知，用于通知开发侧翻译完成",
-  "entryPoint": "index.html",
-  "type": "widget",
-  "permissions": []
-}
-
