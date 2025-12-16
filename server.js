@@ -17,10 +17,18 @@ app.use(express.static(path.join(__dirname, '.')));
 // 3. 核心 API 代理逻辑
 app.post('/api/lark', async (req, res) => {
     try {
-        const { webhookUrl, content } = req.body || {};
+        const { type, content } = req.body || {};
+
+        // 定义 webhook URLs
+        const WEBHOOKS = {
+            development: 'https://open.larksuite.com/open-apis/bot/v2/hook/164d84f0-c8ba-4aa6-8f03-ea0b422b0987',
+            verification: 'https://open.larksuite.com/open-apis/bot/v2/hook/b06f809e-bab5-4fa8-b412-a2500333d668'
+        };
+
+        const webhookUrl = WEBHOOKS[type];
 
         if (!webhookUrl) {
-            return res.status(400).json({ error: 'Missing webhookUrl' });
+            return res.status(400).json({ error: 'Invalid webhook type' });
         }
 
         console.log(`[Proxy] Forwarding to: ${webhookUrl}`);
