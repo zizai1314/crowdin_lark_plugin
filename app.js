@@ -5,7 +5,6 @@ const LARK_CONFIG = {
 
 async function sendLarkMessage(content, webhookUrl) {
     try {
-        // 使用后端代理接口，解决跨域问题
         const response = await fetch('/api/lark', {
             method: 'POST',
             headers: {

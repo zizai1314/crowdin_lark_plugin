@@ -1,5 +1,4 @@
 export default async function handler(req, res) {
-  // 设置 CORS headers 允许跨域
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
@@ -8,7 +7,6 @@ export default async function handler(req, res) {
     'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
   );
 
-  // 处理预检请求
   if (req.method === 'OPTIONS') {
     res.status(200).end();
     return;
@@ -25,7 +23,6 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Missing webhookUrl' });
     }
 
-    // 调用飞书接口
     const response = await fetch(webhookUrl, {
       method: 'POST',
       headers: {
@@ -39,14 +36,12 @@ export default async function handler(req, res) {
       })
     });
 
-    // 飞书接口返回的是 JSON，但有时出错可能返回文本，所以先作为 text 读取
     const responseText = await response.text();
     
     let responseData;
     try {
         responseData = JSON.parse(responseText);
     } catch (e) {
-        // 如果不是 JSON，就直接返回文本内容
         return res.status(response.status).json({ text: responseText });
     }
 
@@ -57,4 +52,3 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: error.message });
   }
 }
-
