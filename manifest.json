@@ -18,8 +18,8 @@
     "project-menu": [
       {
         "key": "menu",
-        "name": "Getting Started",
-        "url": "/project-menu"
+        "name": "Lark Notification",
+        "url": "/"
       }
     ],
     "custom-file-format": [

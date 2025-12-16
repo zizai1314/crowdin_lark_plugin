@@ -1,23 +1,20 @@
 const LARK_CONFIG = {
-    devWebhookUrl: 'https://open.larksuite.com/open-apis/bot/v2/hook/164d84f0-c8ba-4aa6-8f03-ea0b422b0987',
-    productWebhookUrl: 'https://open.larksuite.com/open-apis/bot/v2/hook/b06f809e-bab5-4fa8-b412-a2500333d668'
+    dev: 'dev',
+    product: 'product'
 };
 
-async function sendLarkMessage(content, webhookUrl) {
+async function sendLarkMessage(content, type) {
     try {
-        const message = {
-            msg_type: 'text',
-            content: {
-                text: content
-            }
-        };
-
-        const response = await fetch(webhookUrl, {
+        // 使用后端代理接口，解决跨域问题
+        const response = await fetch('/api/lark', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json; charset=utf-8'
             },
-            body: JSON.stringify(message)
+            body: JSON.stringify({
+                type: type,
+                content: content
+            })
         });
 
         const responseText = await response.text();
@@ -77,12 +74,12 @@ function setButtonLoading(buttonId, loading) {
     buttonLoading.style.display = loading ? 'inline-block' : 'none';
 }
 
-async function sendNotification(buttonId, webhookUrl, loadingMessage, successMessage, messageContent) {
+async function sendNotification(buttonId, type, loadingMessage, successMessage, messageContent) {
     setButtonLoading(buttonId, true);
     
     try {
         showMessage(loadingMessage, 'info');
-        await sendLarkMessage(messageContent, webhookUrl);
+        await sendLarkMessage(messageContent, type);
         showMessage(successMessage, 'success');
     } catch (error) {
         console.error('发送通知失败:', error);
@@ -110,7 +107,7 @@ async function sendLarkNotification() {
 
     await sendNotification(
         'sendLarkBtn',
-        LARK_CONFIG.devWebhookUrl,
+        LARK_CONFIG.dev,
         '正在通知开发侧...',
         '✅ 开发侧通知发送成功！',
         messageContent
@@ -135,7 +132,7 @@ async function sendVerifyPassNotification() {
 
     await sendNotification(
         'verifyPassBtn',
-        LARK_CONFIG.productWebhookUrl,
+        LARK_CONFIG.product,
         '正在发送人工校验通过通知...',
         '✅ 人工校验通过通知发送成功！',
         messageContent
