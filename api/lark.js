@@ -19,18 +19,10 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { type, content } = req.body || {};
-
-    // 定义 webhook URLs
-    const WEBHOOKS = {
-      dev: 'https://open.larksuite.com/open-apis/bot/v2/hook/164d84f0-c8ba-4aa6-8f03-ea0b422b0987',
-      product: 'https://open.larksuite.com/open-apis/bot/v2/hook/b06f809e-bab5-4fa8-b412-a2500333d668'
-    };
-
-    const webhookUrl = WEBHOOKS[type];
+    const { webhookUrl, content } = req.body || {};
 
     if (!webhookUrl) {
-      return res.status(400).json({ error: '无效的 webhook 类型' });
+      return res.status(400).json({ error: 'Missing webhookUrl' });
     }
 
     // 调用飞书接口
