@@ -1,9 +1,38 @@
 {
+  "identifier": "crowdin_lark_plugin",
   "name": "Lark 通知插件",
-  "version": "1.0.0",
   "description": "一键发送 Lark 通知，用于通知开发侧翻译完成",
-  "entryPoint": "index.html",
-  "type": "widget",
-  "permissions": []
+  "logo": "/logo.svg",
+  "baseUrl": "https://crowdin-lark-plugin.vercel.app",
+  "authentication": {
+    "type": "none"
+  },
+  "events": {
+    "installed": "/events/installed",
+    "uninstall": "/events/uninstall"
+  },
+  "scopes": [
+    "project"
+  ],
+  "modules": {
+    "project-menu": [
+      {
+        "key": "menu",
+        "name": "Getting Started",
+        "url": "/project-menu"
+      }
+    ],
+    "custom-file-format": [
+      {
+        "key": "custom-file-format",
+        "type": "custom-file-format",
+        "url": "/api/file/process",
+        "signaturePatterns": {
+          "fileName": ".+\\.json$",
+          "fileContent": "\"hello_world\":"
+        }
+      }
+    ]
+  }
 }
 
