@@ -126,8 +126,7 @@ async function sendVerifyPassNotification() {
 ⏰ 执行时间：${currentTime}
 
 💡 后续流程：
-1. 翻译内容已通过产品侧校验
-2. 可以进行后续发布流程`;
+1. 翻译内容待人工校验`;
 
     await sendNotification(
         'verifyPassBtn',
