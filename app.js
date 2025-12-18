@@ -115,25 +115,25 @@ async function sendLarkNotification() {
 
 async function sendVerifyPassNotification() {
     const currentTime = new Date().toLocaleString('zh-CN');
-    const messageContent = `✅ Crowdin翻译人工校验通过通知
+    const messageContent = `✅ 翻译完成通知发送成功
 
-📋 任务标题：翻译内容人工校验通过
+📋 任务标题：翻译内容通过
 
-📊 执行状态：人工校验通过
+📊 执行状态：翻译通过
 
-📝 详细信息：产品侧已完成翻译内容人工校验，翻译质量符合要求
+📝 详细信息：产品侧已完成翻译内容校验，翻译质量符合要求
 
 ⏰ 执行时间：${currentTime}
 
 💡 后续流程：
-1. 翻译内容已通过产品侧人工校验
+1. 翻译内容已通过产品侧校验
 2. 可以进行后续发布流程`;
 
     await sendNotification(
         'verifyPassBtn',
         LARK_CONFIG.verification,
-        '正在发送人工校验通过通知...',
-        '✅ 人工校验通过通知发送成功！',
+        '正在发送翻译通过通知...',
+        '✅ 翻译通过通知发送成功！',
         messageContent
     );
 }
