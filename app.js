@@ -115,7 +115,7 @@ async function sendLarkNotification() {
 
 async function sendVerifyPassNotification() {
     const currentTime = new Date().toLocaleString('zh-CN');
-    const messageContent = `✅ 翻译完成通知发送成功
+    const messageContent = `✅ 翻译待审核通知发送成功
 
 📋 任务标题：翻译内容通过
 
@@ -131,8 +131,8 @@ async function sendVerifyPassNotification() {
     await sendNotification(
         'verifyPassBtn',
         LARK_CONFIG.verification,
-        '正在发送翻译通过通知...',
-        '✅ 翻译通过通知发送成功！',
+        '正在发送翻译待审核通过通知...',
+        '✅ 翻译待审核通知发送完成',
         messageContent
     );
 }
